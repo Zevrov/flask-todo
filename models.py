@@ -15,3 +15,7 @@ class Todo(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     title = db.Column(db.String(100))
     complete = db.Column(db.Boolean)
+    order = db.Column(db.Integer, primary_key=True)
+    # gotta parse it into date values
+    due_date = db.Column(db.Integer)
+

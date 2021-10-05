@@ -55,7 +55,11 @@ This section should list any major frameworks that you built your project using.
 <!-- GETTING STARTED -->
 ## Getting Started
 
-Sign up and create your own online todo lists.
+1. navigate to the directory within your terminal and execute: venv\Scripts\activate
+
+2. export FLASK_APP=app.py and export FLASK_ENV=development
+
+3. python app.py to start
 
 
 <!-- USAGE EXAMPLES -->

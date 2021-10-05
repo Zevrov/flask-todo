@@ -49,6 +49,7 @@ This section should list any major frameworks that you built your project using.
 * [Flask](https://flask.palletsprojects.com/en/2.0.x/)
 * [Python](https://www.python.org)
 * [SqlAlchemy](https://www.sqlalchemy.org)
+* [Semantic-ui](https://semantic-ui.com)
 
 
 

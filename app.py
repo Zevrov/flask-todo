@@ -21,30 +21,28 @@ login_manager.init_app(app)
 login_manager.login_view = 'login'
 
 
-
+#this keeps the user logged in
 @login_manager.user_loader
 def load_user(user_id):
     return User.query.get(int(user_id))
 
-
+#home page
 @app.route('/')
 def index():
-    # home page
     return render_template('index.html')
  
+#display a user's todo's and let them order by priority
 @app.route('/todo')
 def todo():
-    #show all todos
     todo_list = Todo.query.filter_by(username=current_user.username).all()
     todo_list.sort(key=lambda x: x.priority, reverse=True)
-    #for todo in todo_list:
     for this_todo in todo_list:
         this_todo.due_date = this_todo.due_date.strftime("%Y-%m-%d")
     return render_template('todo.html', todo_list=todo_list, name=current_user.username)
 
+#add todo route + function
 @app.route("/add", methods=["POST"])
 def add():
-    # add new item
     title = request.form.get("title")
     html_date = request.form.get("date")
     py_date = datetime.strptime(html_date, "%Y-%m-%d")
@@ -53,41 +51,41 @@ def add():
     db.session.commit()
     return redirect(url_for("todo"))
 
+#update route + function
 @app.route("/update/<int:todo_id>")
 def update(todo_id):
-    # update an existing item
     todo = Todo.query.filter_by(id=todo_id).first()
     todo.complete = not todo.complete
     db.session.commit()
     return redirect(url_for("todo"))
 
+#promote route + function
 @app.route("/promote/<int:todo_id>")
 def promote(todo_id):
-    # promote an existing item
     todo = Todo.query.filter_by(id=todo_id).first()
     todo.priority = todo.priority + 1
     db.session.commit()
     return redirect(url_for("todo"))
 
+#demote route + function
 @app.route("/demote/<int:todo_id>")
 def demote(todo_id):
-    # demote an existing item
     todo = Todo.query.filter_by(id=todo_id).first()
     todo.priority = todo.priority - 1
     db.session.commit()
     return redirect(url_for("todo"))
 
+#delete route + function
 @app.route("/delete/<int:todo_id>")
 def delete(todo_id):
-    # delete an existing item
     todo = Todo.query.filter_by(id=todo_id).first()
     db.session.delete(todo)
     db.session.commit()
     return redirect(url_for("todo"))
 
+#login route + function
 @app.route('/login', methods=['GET', 'POST'])
 def login():
-    # login function
     form = LoginForm()
 
     if form.validate_on_submit():
@@ -101,9 +99,9 @@ def login():
 
     return render_template('login.html', form=form)
 
+#signup route + function
 @app.route('/signup', methods=['GET', 'POST'])
 def signup():
-    # create user function
     form = RegisterForm()
 
     if form.validate_on_submit():
@@ -116,9 +114,9 @@ def signup():
 
     return render_template('signup.html', form=form)
 
+#logout route + function
 @app.route('/logout')
 @login_required
-# logout function
 def logout():
     logout_user()
     return redirect(url_for('login'))

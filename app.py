@@ -31,12 +31,12 @@ def load_user(user_id):
 def index():
     # home page
     return render_template('index.html')
-
+ 
 @app.route('/todo')
 def todo():
     #show all todos
     todo_list = Todo.query.filter_by(username=current_user.username).all()
-    todo_list.sort(key=lambda x: x.priority)
+    todo_list.sort(key=lambda x: x.priority, reverse=True)
     #for todo in todo_list:
     for this_todo in todo_list:
         this_todo.due_date = this_todo.due_date.strftime("%Y-%m-%d")

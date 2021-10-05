@@ -16,12 +16,13 @@ Login
     <a class="item" href="{{ url_for('index') }}">Home</a>
     {% if current_user.username != null %}
     <a class="item" href="{{ url_for('todo') }}">Todos</a>
-    {% endif %}
+    <div class="right menu">
+      <a class="item" href="{{ url_for('logout') }}">Log Out</a>
+    </div>
+    {% else %}
     <a class="active item" href="{{ url_for('login') }}">Login</a>
     <a class="item" href="{{ url_for('signup') }}">Sign Up</a>
-    <div class="right menu">
-        <a class="item" href="{{ url_for('logout') }}">Log Out</a>
-    </div>
+    {% endif %}
 </div>    
 
 <div class="container">

@@ -10,17 +10,18 @@
     <script src="https://cdn.jsdelivr.net/npm/semantic-ui@2.4.2/dist/semantic.min.js"></script>
 </head>
 <body>
-      <div class="ui secondary  menu">
-        <a class="active item" href="{{ url_for('index') }}">Home</a>
+    <div class="ui secondary  menu">
+        <a class="item" href="{{ url_for('index') }}">Home</a>
         {% if current_user.username != null %}
         <a class="item" href="{{ url_for('todo') }}">Todos</a>
-        {% endif %}
-        <a class="item" href="{{ url_for('login') }}">Login</a>
-        <a class="item" href="{{ url_for('signup') }}">Sign Up</a>
         <div class="right menu">
-            <a class="item" href="{{ url_for('logout') }}">Log Out</a>
+          <a class="item" href="{{ url_for('logout') }}">Log Out</a>
         </div>
-    </div>
+        {% else %}
+        <a class="active item" href="{{ url_for('login') }}">Login</a>
+        <a class="item" href="{{ url_for('signup') }}">Sign Up</a>
+        {% endif %}
+    </div>    
     <div>
         <h1 class="ui center aligned header">To Do App</h1>
         <h1 class="ui center aligned header">Please sign in</h2>

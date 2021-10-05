@@ -1,0 +1,40 @@
+{% extends "bootstrap/base.html" %}
+{% import "bootstrap/wtf.html" as wtf %}
+
+{% block title %}
+Sign Up
+{% endblock %}
+
+{% block styles %}
+{{super()}}
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/semantic-ui@2.4.2/dist/semantic.min.css">
+<script src="https://cdn.jsdelivr.net/npm/semantic-ui@2.4.2/dist/semantic.min.js"></script>
+{% endblock %}
+
+{% block content %}
+<div class="ui secondary  menu">
+    <a class="item" href="{{ url_for('index') }}">Home</a>
+    {% if current_user.username != null %}
+    <a class="item" href="{{ url_for('todo') }}">Todos</a>
+    {% endif %}
+    <a class="item" href="{{ url_for('login') }}">Login</a>
+    <a class="active item" href="{{ url_for('signup') }}">Sign Up</a>
+    <div class="right menu">
+        <a class="item" href="{{ url_for('logout') }}">Log Out</a>
+    </div>
+</div>    
+
+
+<div class="container">
+
+  <form class="form-signin" method="POST" action="/signup">
+    <h2 class="form-signin-heading">Sign Up</h2>
+    {{ form.hidden_tag() }}
+    {{ wtf.form_field(form.username) }}
+    {{ wtf.form_field(form.email) }}
+    {{ wtf.form_field(form.password) }}
+    <button class="btn btn-lg btn-primary btn-block" type="submit">Sign Up</button>
+  </form>
+
+</div> <!-- /container -->
+{% endblock %}

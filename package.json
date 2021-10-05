@@ -1,0 +1,25 @@
+{
+  "name": "flask-todo",
+  "version": "1.0.0",
+  "description": "<!--\r *** Thanks for checking out the Best-README-Template. If you have a suggestion\r *** that would make this better, please fork the repo and create a pull request\r *** or simply open an issue with the tag \"enhancement\".\r *** Thanks again! Now go create something AMAZING! :D\r -->",
+  "main": "index.js",
+  "dependencies": {
+    "node": "^16.10.0"
+  },
+  "devDependencies": {
+    "gulp": "^4.0.2"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Zevrov/flask-todo.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Zevrov/flask-todo/issues"
+  },
+  "homepage": "https://github.com/Zevrov/flask-todo#readme"
+}

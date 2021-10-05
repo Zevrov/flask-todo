@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>todo app</title>
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/semantic-ui@2.4.2/dist/semantic.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/semantic-ui@2.4.2/dist/semantic.min.js"></script>
+</head>
+<body>
+      <div class="ui secondary  menu">
+        <a class="item" href="{{ url_for('index') }}">Home</a>
+        <a class="active item" href="{{ url_for('todo') }}">Todos</a>
+        <a class="item" href="{{ url_for('login') }}">Login</a>
+        <a class="item" href="{{ url_for('signup') }}">Sign Up</a>
+        <div class="right menu">
+            <a class="item" href="{{ url_for('logout') }}">Log Out</a>
+        </div>
+        </div>
+        
+        <div style="margin-top: 50px;" class="ui container">
+            <h1 class="ui center aligned header">To Do App</h1>
+            <h2 class="page-header">Welcome, {{ name }}</h2>
+            <form class="ui form" action="/add" method="post">
+                <div class="field">
+                    <label>Todo</label>
+                    <input type="text" name="title" placeholder="Enter Todo..."><br>
+                </div>
+                <div class="field">
+                <label >Due Date:</label>
+                    <input type="date" name="date"
+                    min="2021-01-01" max="2030-12-31">
+                </div>
+                <button class="ui blue button" type="submit">Add</button>
+            </form>
+        
+            <hr>
+            
+            {% for todo in todo_list %}
+            <div class="ui segment">
+                <p class="ui big header">ID: {{ todo.id }} | {{ todo.title }} | Due Date: {{ todo.due_date }} | Priority: {{ todo.priority }}</p>
+        
+                {% if todo.complete == False %}
+                <span class="ui gray label">Not Complete</span>
+                {% else %}
+                <span class="ui green label">Completed</span>
+                {% endif %}
+        
+                <a class="ui blue button" href="/update/{{ todo.id }}">Complete</a>
+                <a class="ui red button" href="/delete/{{ todo.id }}">Delete</a>
+                
+                {% if todo.priority == 5 %}
+                <a class="ui gray button">Promote</a>
+                {% else %}
+                <a class="ui green button" href="/promote/{{ todo.id }}">Promote</a>
+                {% endif %}
+                
+                {% if todo.priority == 0%}
+                <a class="ui gray button">Demote</a>
+                {% else %}
+                <a class="ui yellow button" href="/demote/{{ todo.id }}">Demote</a>
+                {% endif %}
+            </div>
+            {% endfor %}
+        </div>
+</body>
+</html>
+

@@ -30,7 +30,7 @@ def load_user(user_id):
 @app.route('/')
 def index():
     # home page
-    return render_template('base.html')
+    return render_template('index.html')
 
 @app.route('/todo')
 def todo():
